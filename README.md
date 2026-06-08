@@ -1,30 +1,30 @@
-# The Chronicle — A Monument to Destiny 2
+# The Chronicle - A Monument to Destiny 2
 
-An interactive museum of Destiny 2 (2017–2026). Scroll through every era — from
-**The Red War** to **The Final Shape** and the Episodes beyond — with iconic
+An interactive museum of Destiny 2 (2017–2026). Scroll through every era - from
+**The Red War** to **The Final Shape** and the Episodes beyond - with iconic
 exotic artifacts pulled **live from the Bungie Armory** as you go, and a
 closing memorial for the end of an era.
 
-Pure static site — HTML, CSS and vanilla JavaScript. No build step. Runs on
+Pure static site - HTML, CSS and vanilla JavaScript. No build step. Runs on
 GitHub Pages.
 
 ---
 
 ## ✦ Features
 
-- **Cinematic timeline** — one monumental section per expansion, with a fixed
+- **Cinematic timeline** - one monumental section per expansion, with a fixed
   era rail, scroll progress, and a starfield "Traveler" glow that shifts color
   to match each era.
-- **Bungie-sourced exotics** — each era's iconic exotics are shown with their
+- **Bungie-sourced exotics** - each era's iconic exotics are shown with their
   real in-game icons (resolved from the Bungie Manifest and baked into
   `data.js`, so they load instantly with no per-icon API calls). Click any
   weapon to open its full page on **[light.gg](https://www.light.gg/)**.
-- **Ambient soundtrack** — "Deep Stone Lullaby" loops in the background and
-  starts automatically, with a tasteful equalizer toggle (bring your own MP3 —
+- **Ambient soundtrack** - "Deep Stone Lullaby" loops in the background and
+  starts automatically, with a tasteful equalizer toggle (bring your own MP3 -
   see setup).
-- **Live manifest badge** — fetches the current Bungie Manifest version as a
+- **Live manifest badge** - fetches the current Bungie Manifest version as a
   seal of authenticity.
-- **Works without a key** — the full timeline, icons and light.gg links all
+- **Works without a key** - the full timeline, icons and light.gg links all
   render even without an API key; only the live manifest badge needs one.
 - **Responsive** and respects `prefers-reduced-motion`.
 
@@ -38,7 +38,7 @@ GitHub Pages.
 2. **Create New App.**
 3. Set **OAuth Client Type** to *Not Applicable* (we only read public data).
 4. Set the **Website** and **Redirect URL** to your GitHub Pages URL
-   (e.g. `https://YOURNAME.github.io/destiny2-chronicle/`) — any valid URL works
+   (e.g. `https://YOURNAME.github.io/destiny2-chronicle/`) - any valid URL works
    for a read-only key.
 5. Copy the generated **API Key**.
 
@@ -54,7 +54,7 @@ window.CHRONICLE_CONFIG = {
 ```
 
 > ⚠️ On a static site this key is visible in the public source. That's fine for
-> a read-only, rate-limited Bungie key — but treat it as public. You can revoke
+> a read-only, rate-limited Bungie key - but treat it as public. You can revoke
 > or rotate it anytime from the Bungie application page.
 
 ### 3. Add the soundtrack (optional)
@@ -81,7 +81,7 @@ python3 -m http.server 8000
 cd destiny2-chronicle
 git init
 git add .
-git commit -m "The Chronicle — a monument to Destiny 2"
+git commit -m "The Chronicle - a monument to Destiny 2"
 git branch -M main
 git remote add origin https://github.com/YOURNAME/destiny2-chronicle.git
 git push -u origin main
@@ -97,7 +97,7 @@ a branch → `main` / root**. Your site goes live at
 
 ## ✦ Customizing the content
 
-All text and the list of artifacts live in **`assets/js/data.js`** — edit era
+All text and the list of artifacts live in **`assets/js/data.js`** - edit era
 summaries, highlights, quotes, or the `items` arrays (artifacts are looked up by
 name, so just use the in-game name).
 
@@ -105,7 +105,7 @@ name, so just use the in-game name).
 
 ## ✦ How the API is used
 
-Only read-only, key-authenticated public endpoints — no OAuth, no user data:
+Only read-only, key-authenticated public endpoints - no OAuth, no user data:
 
 | Purpose            | Endpoint                                                  |
 | ------------------ | --------------------------------------------------------- |
@@ -120,13 +120,3 @@ icon path were resolved from the Manifest ahead of time and baked into
 > `NotFound`, which is why items are referenced by hash rather than by name.
 
 Results are cached in `localStorage` to stay comfortably within rate limits.
-
----
-
-## ✦ Disclaimer
-
-A fan-made tribute. Destiny 2, the Traveler, and all related marks are property
-of **Bungie, Inc.** This project is not affiliated with or endorsed by Bungie.
-All item data and imagery is served live from the public Bungie.net API.
-
-*Eyes up, Guardian.*
