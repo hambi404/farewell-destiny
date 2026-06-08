@@ -1,19 +1,6 @@
 /* ============================================================================
  *  THE CHRONICLE — Bungie API client
- * ----------------------------------------------------------------------------
- *  A tiny, dependency-free wrapper around the public Bungie.net Platform API.
- *  Only one read-only, key-authenticated endpoint is used:
- *
- *    GET /Destiny2/Manifest/   -> live manifest version (the authenticity badge)
- *
- *  Item icons, names and hashes are resolved ahead of time and baked into
- *  data.js (Bungie's old SearchDestinyEntities endpoint now returns NotFound),
- *  so rendering the timeline needs no runtime item lookups.
- *
- *  The Bungie API supports CORS for browser requests, so all of this runs
- *  client-side on GitHub Pages. Results are cached in localStorage to stay
- *  well within rate limits across visits.
- * ========================================================================== */
+=============================================================================== */
 
 const BungieAPI = (() => {
   const ROOT = "https://www.bungie.net";
