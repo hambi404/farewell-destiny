@@ -1,0 +1,750 @@
+/* ============================================================================
+ *  THE CHRONICLE — Styles
+ * ========================================================================== */
+
+:root {
+  --bg: #05060c;
+  --bg-2: #090b16;
+  --ink: #e9eef7;
+  --ink-dim: #9aa6bd;
+  --ink-faint: #5d6884;
+  --line: rgba(150, 170, 210, 0.14);
+  --accent: #e9eef7; /* updated per-era by JS */
+  --accent-soft: rgba(233, 238, 247, 0.12);
+  --maxw: 1100px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --font-display: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: radial-gradient(1200px 800px at 50% -10%, #11142a 0%, var(--bg) 55%);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ---- Backdrop ----------------------------------------------------------- */
+#starfield {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  display: block;
+}
+
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 50% 35%,
+    transparent 40%,
+    rgba(3, 4, 9, 0.55) 100%
+  );
+}
+
+/* ---- Scroll progress ---------------------------------------------------- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 50;
+  background: transparent;
+}
+.scroll-progress span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, transparent, var(--accent));
+  box-shadow: 0 0 14px var(--accent);
+  transition: width 0.1s linear, background 0.6s var(--ease);
+}
+
+/* ---- Era rail ----------------------------------------------------------- */
+.rail {
+  position: fixed;
+  right: 26px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 14px 0;
+}
+.rail::before {
+  content: "";
+  position: absolute;
+  right: 5px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--line);
+}
+.rail a {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 12px;
+  text-align: right;
+  color: var(--ink-faint);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.4s var(--ease);
+}
+.rail a .rail-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1px solid var(--ink-faint);
+  background: var(--bg);
+  flex: none;
+  transition: all 0.4s var(--ease);
+}
+.rail a .rail-label {
+  opacity: 0;
+  transform: translateX(6px);
+  transition: all 0.4s var(--ease);
+  white-space: nowrap;
+}
+.rail a:hover .rail-label,
+.rail a.active .rail-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+.rail a:hover,
+.rail a.active {
+  color: var(--ink);
+}
+.rail a.active .rail-dot {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft), 0 0 18px var(--accent);
+  transform: scale(1.15);
+}
+
+/* ---- Hero --------------------------------------------------------------- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8vh 24px;
+  position: relative;
+}
+.hero-inner {
+  max-width: 760px;
+  animation: rise 1.4s var(--ease) both;
+}
+.hero-span {
+  font-family: var(--font-display);
+  letter-spacing: 0.5em;
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+  text-indent: 0.5em;
+  margin-bottom: 1.6rem;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.8rem, 11vw, 7.5rem);
+  letter-spacing: 0.14em;
+  line-height: 0.95;
+  text-indent: 0.14em;
+  background: linear-gradient(180deg, #ffffff 0%, #b9c4dc 60%, #7e8aa8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 60px rgba(180, 200, 255, 0.25);
+}
+.hero-subtitle {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  letter-spacing: 0.32em;
+  text-indent: 0.32em;
+  color: var(--ink-dim);
+  margin-top: 1rem;
+}
+.hero-blurb {
+  max-width: 540px;
+  margin: 2rem auto 0;
+  color: var(--ink-dim);
+  font-size: 1.02rem;
+}
+.manifest-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 2.4rem;
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  background: rgba(10, 14, 28, 0.5);
+  backdrop-filter: blur(6px);
+}
+.manifest-badge .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #46d39a;
+  box-shadow: 0 0 10px #46d39a;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.scroll-cue {
+  margin-top: clamp(2.5rem, 6vh, 4.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--ink-faint);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  animation: rise 1.6s 0.6s var(--ease) both, float 2.6s 1.6s ease-in-out infinite;
+}
+.scroll-cue:hover {
+  color: var(--ink);
+}
+.scroll-cue .chevron {
+  width: 13px;
+  height: 13px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+}
+
+/* ---- Era sections ------------------------------------------------------- */
+.era {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 14vh 28px;
+  position: relative;
+  text-align: center;
+}
+.era-marker {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 1.4rem;
+}
+.era-year {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 7vw, 4.6rem);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--accent);
+  opacity: 0.85;
+}
+.era-kicker {
+  font-family: var(--font-display);
+  font-size: 0.74rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.era-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 6vw, 3.6rem);
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  margin-bottom: 0.3rem;
+}
+.era-subtitle {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1rem, 2.6vw, 1.4rem);
+  letter-spacing: 0.06em;
+  color: var(--ink-dim);
+  margin-bottom: 1.6rem;
+}
+.era-date {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.5rem;
+}
+.era-summary {
+  max-width: 640px;
+  font-size: 1.08rem;
+  color: #cdd6e8;
+  margin: 0 auto 2rem;
+}
+.era-highlights {
+  list-style: none;
+  display: grid;
+  gap: 0.7rem;
+  width: fit-content;
+  max-width: 640px;
+  margin: 0 auto 2.4rem;
+  text-align: left;
+}
+.era-highlights li {
+  position: relative;
+  padding-left: 1.8rem;
+  color: var(--ink-dim);
+}
+.era-highlights li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 9px;
+  height: 9px;
+  transform: rotate(45deg);
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+.era-quote {
+  border-left: 2px solid var(--accent);
+  padding: 0.4rem 0 0.4rem 1.4rem;
+  margin: 0 auto 2.4rem;
+  max-width: 600px;
+  width: fit-content;
+  text-align: left;
+}
+.era-quote p {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--ink);
+}
+.era-quote cite {
+  display: block;
+  margin-top: 0.6rem;
+  font-style: normal;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* Glow plate behind each era */
+.era::before {
+  content: "";
+  position: absolute;
+  top: 8vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 70%;
+  background: radial-gradient(
+    closest-side,
+    var(--accent-soft),
+    transparent 75%
+  );
+  filter: blur(30px);
+  opacity: 0.7;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ---- Artifacts grid ----------------------------------------------------- */
+.artifacts-head {
+  font-family: var(--font-display);
+  font-size: 0.74rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.artifacts-head::before,
+.artifacts-head::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.artifacts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 14px;
+  max-width: 720px;
+  margin: 0 auto;
+  justify-content: center;
+}
+.artifact {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(12, 16, 30, 0.55);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  font: inherit;
+  transition: transform 0.4s var(--ease), border-color 0.4s var(--ease),
+    box-shadow 0.4s var(--ease), background 0.4s var(--ease);
+}
+.artifact:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  background: rgba(18, 24, 44, 0.7);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--accent-soft);
+}
+.artifact-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  flex: none;
+  object-fit: cover;
+  background: #0c1020;
+  border: 1px solid var(--line);
+}
+.artifact-icon.placeholder {
+  display: grid;
+  place-items: center;
+  color: var(--ink-faint);
+  font-size: 1.3rem;
+}
+.artifact-name {
+  font-family: var(--font-display);
+  font-size: 0.86rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+.artifact.skeleton {
+  pointer-events: none;
+}
+.artifact.skeleton .artifact-icon,
+.artifact.skeleton .artifact-name {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.04)
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  color: transparent;
+  border-radius: 6px;
+}
+.artifact.skeleton .artifact-name {
+  height: 0.9em;
+  width: 80px;
+}
+.artifacts-note {
+  margin-top: 1rem;
+  font-size: 0.86rem;
+  color: var(--ink-faint);
+}
+
+/* ---- Reveal animation --------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(34px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Memorial ----------------------------------------------------------- */
+.memorial {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16vh 24px;
+  position: relative;
+}
+.memorial .mem-kicker {
+  font-family: var(--font-display);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  margin-bottom: 1.4rem;
+}
+.memorial .mem-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 9vw, 5.5rem);
+  letter-spacing: 0.08em;
+  background: linear-gradient(180deg, #fff, #aeb9d4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 2rem;
+}
+.memorial .mem-lines p {
+  color: var(--ink-dim);
+  font-size: 1.1rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.mem-stats {
+  display: flex;
+  gap: clamp(2rem, 8vw, 5rem);
+  margin: 3.4rem 0;
+}
+.mem-stat .v {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 7vw, 4rem);
+  line-height: 1;
+  background: linear-gradient(180deg, #fff, #8b97b6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.mem-stat .l {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 0.6rem;
+}
+.mem-farewell {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+.mem-signoff {
+  font-family: var(--font-display);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+}
+
+/* ---- Footer ------------------------------------------------------------- */
+.site-footer {
+  text-align: center;
+  padding: 4rem 24px 5rem;
+  border-top: 1px solid var(--line);
+  max-width: 720px;
+  margin: 0 auto;
+}
+.site-footer p {
+  color: var(--ink-faint);
+  font-size: 0.82rem;
+}
+.footer-sign {
+  margin-top: 1.2rem;
+  font-family: var(--font-display);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+/* ---- Artifact external-link cue ---------------------------------------- */
+.artifact-ext {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  opacity: 0;
+  transform: translateY(2px);
+  transition: all 0.3s var(--ease);
+}
+.artifact:hover .artifact-ext,
+.artifact:focus-visible .artifact-ext {
+  opacity: 1;
+  transform: none;
+  color: var(--accent);
+}
+
+/* ---- Ambient audio control --------------------------------------------- */
+.audio-toggle {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(10, 14, 28, 0.6);
+  backdrop-filter: blur(8px);
+  color: var(--ink-dim);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.4s var(--ease), border-color 0.4s var(--ease),
+    box-shadow 0.4s var(--ease);
+}
+.audio-toggle:hover {
+  color: var(--ink);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-soft), 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+.audio-toggle.playing {
+  color: var(--ink);
+  border-color: var(--accent);
+}
+.audio-toggle.unavailable {
+  opacity: 0.7;
+  cursor: help;
+}
+
+/* Equalizer bars */
+.eq {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 16px;
+  width: 22px;
+}
+.eq i {
+  flex: 1;
+  height: 30%;
+  background: currentColor;
+  border-radius: 1px;
+}
+.audio-toggle.playing .eq i {
+  animation: eq 0.9s ease-in-out infinite;
+}
+.audio-toggle.playing .eq i:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.audio-toggle.playing .eq i:nth-child(3) {
+  animation-delay: 0.45s;
+}
+.audio-toggle.playing .eq i:nth-child(4) {
+  animation-delay: 0.15s;
+}
+.audio-toggle.unavailable .eq {
+  opacity: 0.5;
+}
+
+@keyframes eq {
+  0%,
+  100% {
+    height: 25%;
+  }
+  50% {
+    height: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .audio-label {
+    display: none;
+  }
+  .audio-toggle {
+    padding: 12px;
+    gap: 0;
+  }
+}
+
+/* ---- Animations --------------------------------------------------------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+}
+@keyframes float {
+  50% {
+    transform: translateY(8px);
+  }
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.4;
+  }
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+}
+
+/* ---- Responsive --------------------------------------------------------- */
+@media (max-width: 860px) {
+  .rail {
+    display: none;
+  }
+}
+@media (max-width: 560px) {
+  .era {
+    padding: 12vh 20px;
+  }
+  .mem-stats {
+    gap: 2rem;
+  }
+}
+
+/* ---- Reduced motion ----------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  .reveal {
+    animation: none !important;
+    transition: none !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
