@@ -2,7 +2,7 @@
 
 An interactive museum of Destiny 2 (2017–2026). Scroll through every era - from
 **The Red War** to **The Final Shape** and the Episodes beyond - with iconic
-exotic artifacts pulled **live from the Bungie Armory** as you go, and a
+exotic exotics pulled **live from the Bungie Armory** as you go, and a
 closing memorial for the end of an era.
 
 Pure static site - HTML, CSS and vanilla JavaScript. No build step. Runs on
@@ -97,8 +97,8 @@ a branch → `main` / root**. Your site goes live at
 
 ## ✦ Customizing the content
 
-All text and the list of artifacts live in **`assets/js/data.js`** - edit era
-summaries, highlights, quotes, or the `items` arrays (artifacts are looked up by
+All text and the list of exotics live in **`assets/js/data.js`** - edit era
+summaries, highlights, quotes, or the `items` arrays (exotics are looked up by
 name, so just use the in-game name).
 
 ---
