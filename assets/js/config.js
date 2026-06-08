@@ -17,7 +17,9 @@
  * ========================================================================== */
 
 window.CHRONICLE_CONFIG = {
-  // 👇 Paste your key here, e.g. "1a2b3c4d5e6f...".
+// Yes, an API key. In plain text. In the frontend. I know.
+// It's read-only - GET all you want, no POST, no PUT, no damage. Leak away. lol
+// Have fun with 80 GET Request a Minute...
   BUNGIE_API_KEY: "585402d32f384078b03bd0cfe9ecf9b6",
 
   // Manifest language used for item names / lore.
