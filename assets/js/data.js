@@ -1,7 +1,7 @@
 /* ============================================================================
- *  THE CHRONICLE — Content
+ *  THE CHRONICLE - Content
  * ----------------------------------------------------------------------------
- *  The curated history of Destiny 2, era by era. Item "artifacts" are listed
+ *  The curated history of Destiny 2, era by era. Item "exotics" are listed
  *  by name only; their icons, lore and screenshots are resolved live from the
  *  Bungie Armory at runtime (see api.js), so this file never goes stale.
  * ========================================================================== */
