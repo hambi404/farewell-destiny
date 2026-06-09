@@ -261,12 +261,6 @@ window.CHRONICLE = {
       "Now the Traveler dims, and the last chapter is written.",
     ],
     
-    stats: [
-      { value: "10", label: "Expansions" },
-      { value: "9", label: "Years" },
-      { value: "1", label: "Light" },
-    ],
-    
     farewell: "Thank you, Bungie.",
     signoff: "Eyes up Guardians.",
   },
