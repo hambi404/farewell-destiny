@@ -234,14 +234,18 @@
       <div class="mem-lines">${m.lines
         .map((l) => `<p>${esc(l)}</p>`)
         .join("")}</div>
-      <div class="mem-stats">${m.stats
-        .map(
-          (s) =>
-            `<div class="mem-stat"><div class="v">${esc(
-              s.value
-            )}</div><div class="l">${esc(s.label)}</div></div>`
-        )
-        .join("")}</div>
+      ${
+        m.stats && m.stats.length
+          ? `<div class="mem-stats">${m.stats
+              .map(
+                (s) =>
+                  `<div class="mem-stat"><div class="v">${esc(
+                    s.value
+                  )}</div><div class="l">${esc(s.label)}</div></div>`
+              )
+              .join("")}</div>`
+          : ""
+      }
       <p class="mem-farewell">${esc(m.farewell)}</p>
       <p class="mem-signoff">${esc(m.signoff)}</p>
     `;
