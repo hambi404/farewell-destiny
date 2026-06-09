@@ -260,11 +260,7 @@ window.CHRONICLE = {
       "across over 15 worlds, 10 expansions, 23 seasons, 3 episodes and one long, impossible war.",
       "Now the Traveler dims, and the last chapter is written.",
     ],
-    stats: [
-      { value: "10", label: "Expansions" },
-      { value: "9", label: "Years" },
-      { value: "1", label: "Light" },
-    ],
+
     farewell: "Thank you, Bungie.",
     signoff: "Eyes up Guardians.",
   },
